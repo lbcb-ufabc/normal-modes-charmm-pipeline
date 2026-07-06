@@ -75,7 +75,7 @@ Execute the scripts in the following order:
 ```bash
 charmm < mini-restraint.inp > mini-restraint.out
 charmm < ligdiag.inp > ligdiag.out
-charmm < traj_diag.inp > traj_diag.out
+charmm < traj-diag.inp > traj-diag.out
 charmm < fluct-mod.inp > fluct-mod.out
 ```
 
@@ -132,7 +132,7 @@ min_restr.crd
 
 ---
 
-## 🎞️ Traj_diag
+## 🎞️ Traj-diag
 
 Generates the normal modes.
 
