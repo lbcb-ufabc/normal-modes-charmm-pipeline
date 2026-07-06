@@ -45,7 +45,7 @@ Utilize este pipeline quando desejar:
 
 Os requisitos e dependências de software estão descritos em:
 
-[Requirements](https://github.com/Labbiofisbiocomp/normal-mode-charmm-pipeline/blob/main/requirements.md)
+[Requirements](https://github.com/Labbiofisbiocomp/normal-modes-charmm-pipeline/blob/main/requirements.md)
 
 ---
 
