@@ -2,50 +2,40 @@
 
 ## 📌 Descrição
 
-Este pipeline consiste em um conjunto de scripts adaptados do workflow desenvolvido por David Perahia para realizar **Análise de Modos Normais (Normal Mode Analysis - NMA)** e análise de flutuações estruturais de proteínas.
+Este pipeline foi desenvolvido para realizar **Análise de Modos Normais (Normal Mode Analysis – NMA)** e análise de flutuações estruturais de proteínas utilizando o **CHARMM**.
 
-O workflow inclui:
-
-* Minimização de energia com restrições,
-* Diagonalização da matriz Hessiana,
-* Geração de Modos Normais,
-* Análise de RMSF (Root Mean Square Fluctuation).
-
-O Normal Modes CHARMM Pipeline foi desenvolvido para automatizar etapas de preparação, execução e análise de cálculos de modos normais em sistemas biomoleculares.
-Ele integra scripts auxiliares e rotinas que permitem:
-
-* Preparação de arquivos de entrada para o CHARMM.
-* Execução de cálculos de modos normais.
-* Processamento e análise dos resultados.
+Adaptado do workflow desenvolvido por **David Perahia**, o pipeline automatiza as etapas de preparação, minimização de energia, cálculo dos modos normais e análise das flutuações estruturais, permitindo investigar os movimentos coletivos e a flexibilidade conformacional de sistemas biomoleculares.
   
 ---
-
-## 🎯 Quando usar
-
-Utilize este pipeline quando desejar:
-
-* Analisar movimentos coletivos de proteínas
-* Gerar Modos Normais
-* Explorar flexibilidade conformacional
-* Calcular valores de RMSF
-* Estudar dinâmica estrutural utilizando Análise de Modos Normais
-
----
-
-## 📂 O que este pipeline gera
-
-* Estruturas minimizadas
-* Arquivos de modos normais
-* Trajetórias estruturais
-* Dados de RMSF/flutuação
-
----
-
 ## ⚙️ Requisitos
 
-Os requisitos e dependências de software estão descritos em:
+Os requisitos e dependências estão disponíveis em:
 
 [Requirements](https://github.com/Labbiofisbiocomp/normal-modes-charmm-pipeline/blob/main/requirements.md)
+
+---
+# 📖 Sobre o projeto
+
+Este pipeline foi desenvolvido para:
+
+- realizar minimização de energia com restrições;
+- calcular modos normais utilizando o CHARMM;
+- analisar movimentos coletivos de proteínas;
+- calcular flutuações estruturais (RMSF);
+- gerar arquivos para análises estruturais posteriores.
+
+---
+# 📂 Estrutura do repositório
+
+```text
+.
+├── requirements.md
+├── mini-restraint.inp
+├── ligdiag.inp
+├── traj-diag.inp
+├── fluct-mod.inp
+└── README.md
+```
 
 ---
 
@@ -64,13 +54,7 @@ Análise de flutuação atômica (RMSF)
 ```
 ---
 
-## ▶️ Como executar (passo a passo)
-
-Clone o repositório e configure o ambiente:
-```bash
-git clone https://github.com/Labbiofisbiocomp/normal-modes-charmm-pipeline.git
-cd normal-modes-charmm-pipeline
-```
+## ▶️ Como executar
 
 Execute os scripts na seguinte ordem:
 
@@ -85,100 +69,37 @@ charmm < fluct-mod.inp > fluct-mod.out
 
 ## 📥 Inputs
 
-* `step1_pdbreader.psf`
-* `step1_pdbreader.crd`
+* `step1_pdbreader.psf`  → Arquivo de topologia.
+* `step1_pdbreader.crd` → Coordenadas iniciais da estrutura.
 
 ---
 
 ## 📤 Outputs
 
-* `min_restr.crd`
-* `modes.mod`
-* `flut-@i.pdb`
+Ao final da execução são gerados:
+
+- `min_restr.crd` contendo a estrutura minimizada;
+- `modes.mod` contendo os modos normais calculados;
+- `flut-@i.pdb` contendo os valores de flutuação estrutural (RMSF).
 
 ---
 
-# 🧪 Detalhamento das etapas
+## 🧪 Estrutura dos arquivos
 
----
-
-## 🔒 Mini-restraint
-
-Realiza a minimização estrutural utilizando uma série de restrições até atingir o estado mínimo sem restrições.
-
-### Input
-
-```text
-step1_pdbreader.psf
-step1_pdbreader.crd
-```
-
-### Output
-
-```text
-./min_restr.crd
-```
-
----
-
-## 🧬 Ligdiag
-
-Diagonaliza a matriz Hessiana.
-
-### Input
-
-```text
-step1_pdbreader.psf
-min_restr.crd
-```
-
----
-
-## 🎞️ Traj-diag
-
-Gera os modos normais.
-
-### Input
-
-```text
-step1_pdbreader.psf
-min_restr.crd
-```
-
-### Output
-
-```text
-./modes.mod
-```
-
----
-
-## 📊 Fluct_mod
-
-Calcula o RMSF (Root Mean Square Fluctuation) com base nas flutuações atômicas.
-
-### Input
-
-```text
-step1_pdbreader.psf
-min_restr.crd
-```
-
-### Output
-
-```text
-./flut-@i.pdb
-```
+- `mini-restraint.inp` → Realiza a minimização de energia utilizando restrições estruturais.
+- `ligdiag.inp` → Calcula e diagonaliza a matriz Hessiana.
+- `traj-diag.inp` → Gera os modos normais da estrutura minimizada.
+- `fluct-mod.inp` → Calcula as flutuações estruturais (RMSF) a partir dos modos normais.
 
 ---
 ## ⚠️ Observações importantes
 
-* Os scripts devem ser executados **na ordem correta**
-* Verifique os outputs gerados antes de prosseguir para a próxima etapa
-* Certifique-se de que os arquivos PSF e CRD estejam corretamente formatados
+* Os scripts devem ser executados na ordem apresentada.
+* Certifique-se de que os arquivos `.psf` e `.crd` estejam corretamente preparados antes da execução.
+* Verifique os arquivos de saída antes de prosseguir para etapas posteriores da análise.
+* Dependendo do tamanho do sistema biomolecular, o tempo de processamento pode variar.
 
 ---
 
 ## 📌 Notas
-
-Este pipeline foi adaptado do workflow desenvolvido por David Perahia.
+Este pipeline foi adaptado do workflow desenvolvido por **David Perahia** para automatizar análises de Modos Normais utilizando o **CHARMM**.
