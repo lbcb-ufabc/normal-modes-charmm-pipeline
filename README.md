@@ -34,6 +34,7 @@ Este pipeline foi desenvolvido para:
 ├── ligdiag.inp
 ├── traj-diag.inp
 ├── fluct-mod.inp
+├── README-en.md            
 └── README.md
 ```
 
